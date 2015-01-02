@@ -1,13 +1,20 @@
-Please install Node.js (which you can download here http://nodejs.org/) --if it is not already installed-- and execute:
+# RemoteControl Express.js
+A WebSocket-based remote control web application implemented with Express.js and Socket.io
 
+# Dependencies
+Node.js: http://nodejs.org/
+
+# Deployment
+Before first time deployment please execute: 
+```bash
 npm install
+```
 
-to install the dependencies.
-
-You can start the application with:
-
-node webApp.js 
-
-or
-
+Start the application by:
+```bash
 npm start
+```
+or
+```bash
+node webAppjs
+```
