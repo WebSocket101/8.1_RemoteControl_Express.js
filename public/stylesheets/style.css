@@ -1,0 +1,23 @@
+body {
+  padding: 20px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+button{
+	width:200px;
+ 	height:200px;
+ 	margin:5px;
+ 	float:left;
+ 	font-weight: bold;
+ }
+
+ #game{
+ 	float:left;
+ 	border:1px solid #ddd;
+ 	display: block;
+ }
+

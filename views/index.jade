@@ -1,0 +1,45 @@
+extends layout
+block content
+  h1 Remote Control
+  canvas#game(width="500",height="400")
+  h2 QR-Code
+  a(target="_blank")#link
+    img#qr
+  script.
+    var socket = io.connect();
+    var host = "http://"+window.location.host;
+    var qrUrl = 'http://chart.apis.google.com/chart?chs=150x150&cht=qr&chl=';
+    socket.on("connect",function(){
+     var sid = socket.io.engine.id;
+     $('#qr').attr('src', qrUrl+host+'/controller/'+sid);
+     $('#link').attr('href', host+'/controller/'+sid);
+    })
+    
+    var canvas = document.getElementById('game');
+    var ctx = canvas.getContext('2d');
+    var speed = 5;
+    ctx.beginPath();
+    ctx.fillStyle = "Red";
+    var x=200;
+    var y=200;
+    drawCircle();
+    function drawCircle(){
+     ctx.beginPath();
+     ctx.arc(x,y,40,0,Math.PI*2,true);
+     ctx.fill();
+    }
+    
+    function clear(){ctx.clearRect(0,0,canvas.width,canvas.height)}
+    function moveRight(){x+=speed;}
+    function moveLeft(){x-=speed;}
+    function moveDown(){y+=speed;}
+    function moveUp(){y-=speed;}
+     
+    socket.on("message",function(message){
+     clear();
+     if(message=="left"){moveLeft();}
+     else if(message=="right"){moveRight();}
+     else if(message=="down"){moveDown();}
+     else if(message=="up"){moveUp();}
+     drawCircle();
+    });

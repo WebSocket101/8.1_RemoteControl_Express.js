@@ -1,0 +1,57 @@
+extends layout
+block content
+  button#left left
+  button#right right
+  button#up up
+  button#down down
+  script.
+   var is_touch_device = 'ontouchstart' in document.documentElement;
+   var socket = io.connect();
+   
+   if(is_touch_device){
+    touch();
+   }
+   else{
+    click();
+   }
+   
+   function touch(){
+    $('#left').bind('touchstart',function(e){
+     e.preventDefault();
+     socket.json.send({sid:'#{sid}',command:'left'});
+    });
+   
+    $('#right').bind('touchstart',function(e){
+     e.preventDefault();
+     socket.json.send({sid:'#{sid}',command:'right'});
+    });
+   
+    $('#up').bind('touchstart',function(e){
+     e.preventDefault();
+     socket.json.send({sid:'#{sid}',command:'up'});
+    });
+   
+    $('#down').bind('touchstart',function(e){
+     e.preventDefault();
+     socket.json.send({sid:'#{sid}',command:'down'});
+    });
+   }
+
+   function click(){
+    $('#left').click(function(){
+    socket.json.send({sid:'#{sid}',command:'left'});
+   })
+   
+   $('#right').click(function(){
+    socket.json.send({sid:'#{sid}',command:'right'});
+   })
+    
+   $('#down').click(function(){
+    socket.json.send({sid:'#{sid}',command:'down'});
+   });
+   
+   $('#up').click(function(){
+    socket.json.send({sid:'#{sid}',command:'up'});
+    });
+   }
+   
