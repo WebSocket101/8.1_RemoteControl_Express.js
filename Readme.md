@@ -16,5 +16,5 @@ npm start
 ```
 or
 ```bash
-node webAppjs
+node webApp.js
 ```
